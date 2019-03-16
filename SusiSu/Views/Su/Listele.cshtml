@@ -1,0 +1,194 @@
+﻿@using SusiSu.Helpers
+@model IEnumerable<SusiSu.Models.ListeleViewModel>
+
+
+@{
+
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+
+
+
+<section class="pt-140 pb-90 top-shape">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 col-lg-4">
+                <!-- single bottle deliver wrap -->
+                <div class="single-bottle-inner text-center">
+                    <div class="bottle-image">
+                        <img src="~/Content/assets/img/icons/water-gallon.svg" alt="" class="svg">
+                    </div>
+                    <div class="single-bottle-text">
+
+
+
+                        <h4> @SusiSu.Enums.Enums.Boy.Buyuk.GetEnumDisplayName()</h4>
+
+
+                        @foreach (var item in Model.Where(x => x.Boy == SusiSu.Enums.Enums.Boy.Buyuk))
+                        {
+
+
+
+                            if (item.Tur == SusiSu.Enums.Enums.Tur.Cam)
+                            {
+                                <h5> Cam Stoktaki Miktar</h5>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            }
+                            else
+                            {
+                                <h5> Plastik Stoktaki Miktar</h5>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+
+                            }
+
+
+                        }
+                        <button type="button" class="btn btn-success" @Url.Action("_SiparisOlustur", "Siparis") data-toggle="modal" data-target="@("#siparis")"> Open Modal</button>
+
+
+
+                        <p> </p>
+
+                    </div>
+                </div><!-- /.End of single bottle deliver wrap -->
+            </div><!-- /.col-->
+            <div class="col-md-6 col-lg-4">
+                <!-- single bottle deliver wrap -->
+                <div class="single-bottle-inner text-center">
+                    <div class="bottle-image">
+                        <img src="~/Content/assets/img/icons/big-bottle-of-water.svg" alt="" class="svg">
+                    </div>
+                    <div class="single-bottle-text">
+                        <h4> @SusiSu.Enums.Enums.Boy.Damacana.GetEnumDisplayName()</h4>
+                        @foreach (var item in Model.Where(x => x.Boy == SusiSu.Enums.Enums.Boy.Damacana))
+                        {
+                            if (item.Tur == SusiSu.Enums.Enums.Tur.Cam)
+                            {
+                                <h5> Cam Stoktaki Miktar</h5>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            }
+                            else
+                            {
+                                <h5> Plastik Stoktaki Miktar</h5>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+
+                            }
+
+
+                        }
+
+                        <button type="button" class="btn btn-success" @Url.Action("_SiparisOlustur", "Siparis") data-toggle="modal" data-target=@("#siparis")> Open Modal</button>
+
+
+
+
+                    </div>
+                </div>
+            </div><!--/. End of single bottle deliver wrap -->
+        </div><!-- /.col-->
+        <div class="col-md-6 col-lg-4">
+            <!-- single bottle deliver wrap -->
+            <div class="single-bottle-inner text-center">
+                <div class="bottle-image">
+                    <img src="~/Content/assets/img/icons/water-bottle.svg" alt="" class="svg">
+                </div>
+                <div class="single-bottle-text">
+                    <h4>   @SusiSu.Enums.Enums.Boy.Kucuk.GetEnumDisplayName()</h4>
+
+                    @foreach (var item in Model.Where(x => x.Boy == SusiSu.Enums.Enums.Boy.Kucuk))
+                    {
+                        if (item.Tur == SusiSu.Enums.Enums.Tur.Cam)
+                        {
+                            <h5> Cam Stoktaki Miktar</h5>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                            <h6>Birim Fiyat</h6>
+                            @Html.DisplayFor(modelItem => item.Fiyat)
+                            <hr />
+
+                        }
+                        else
+                        {
+                            <h5> Plastik Stoktaki Miktar</h5>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+
+                        }
+
+
+                    }
+                    <button type="button" class="btn btn-success" @Url.Action("_SiparisOlustur", "Siparis") data-toggle="modal" data-target=@("#siparis")> Open Modal</button>
+
+
+                </div>
+            </div><!-- End of single bottle deliver wrap -->
+        </div><!-- /.col-->
+
+        <div class="col-md-6 col-lg-4">
+            <!-- single bottle deliver wrap -->
+            <div class="single-bottle-inner text-center">
+                <div class="bottle-image">
+                    <img src="~/Content/assets/img/icons/big-bottle-of-water-with-handle.svg" alt="" class="svg">
+                </div>
+                <div class="single-bottle-text">
+                    @ViewBag.By= item.Boy
+                    <h4>   @SusiSu.Enums.Enums.Boy.Orta.GetEnumDisplayName()</h4>
+                    @foreach (var item in Model.Where(x => x.Boy == SusiSu.Enums.Enums.Boy.Orta))
+                    {
+
+                        if (item.Tur == SusiSu.Enums.Enums.Tur.Cam)
+                        {
+                            <h5> Cam Stoktaki MiktarL</h5>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        }
+                        else
+                        {
+                            <h5> Plastik Stoktaki Miktar </h5>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+
+                        }
+
+
+                    }
+                    <button type="button" class="btn btn-success" @Url.Action("_SiparisOlustur", "Siparis") data-toggle="modal" data-target=@("#siparis")> Open Modal</button>
+
+
+
+
+
+                </div><!-- /.End of single bottle deliver wrap -->
+            </div><!-- /.col-->
+        </div><!-- /.row-->
+    </div><!-- /.container-->
+</section>
+
+<div class="modal fade" id=@("siparis") tabindex="-1" role="dialog" aria-labelledby="">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"> x </span></button>
+                <h4 class="modal-title" id="myModalLabel"> Sipariş </h4>
+            </div>
+            <form method="post" action="">
+                <div class="modal-body">
+                    @{
+                        Html.RenderAction("_SiparisOlustur", "Siparis");
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
